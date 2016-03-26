@@ -1,0 +1,14 @@
+diff --git a/src/ui/element_download_list.cc b/src/ui/element_download_list.cc
+index 5aacc2c..0cf73d1 100644
+--- a/src/ui/element_download_list.cc
++++ b/src/ui/element_download_list.cc
+@@ -64,7 +64,8 @@ ElementDownloadList::ElementDownloadList() :
+     throw torrent::internal_error("View \"main\" must be present to initialize the main display.");
+
+   m_bindings['\x13'] = std::tr1::bind(&ElementDownloadList::receive_command, this, "d.start=");
+-  m_bindings['\x04'] = std::tr1::bind(&ElementDownloadList::receive_command, this, "branch=d.state=,d.stop=,d.erase=");
++  m_bindings['\x04'] = std::tr1::bind(&ElementDownloadList::receive_command, this, "branch=d.state=,d.stop=");
++  m_bindings['D']    = std::tr1::bind(&ElementDownloadList::receive_command, this, "d.erase=");
+   m_bindings['\x0B'] = std::tr1::bind(&ElementDownloadList::receive_command, this, "d.ignore_commands.set=1; d.stop=; d.close=");
+   m_bindings['\x12'] = std::tr1::bind(&ElementDownloadList::receive_command, this, "d.complete.set=0; d.check_hash=");
+   m_bindings['\x05'] = std::tr1::bind(&ElementDownloadList::receive_command, this,
